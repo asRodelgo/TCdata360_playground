@@ -47,10 +47,10 @@ getDataByChunks <- function(cou,timeFrame){
 #get all country metadata in TCdata360
 #df_countries <- get_metadata360(metadata_type = 'countries') %>% as_data_frame()
 
-wc_countries <- c("Spain","Germany","Iceland","Portugal","France","Poland","Russia","United Kingdom","Sweden","Denmark","Croatia","Belgium","Switzerland","Serbia",
-                  "Morocco","Tunisia","Egypt","Nigeria","Senegal","Australia","Japan","South Korea","Iran","Saudi Arabia","Mexico","Colombia","Panama",
-                  "Costa Rica","Peru","Brazil","Argentina","Uruguay")
-
+# wc_countries <- c("Spain","Germany","Iceland","Portugal","France","Poland","Russia","United Kingdom","Sweden","Denmark","Croatia","Belgium","Switzerland","Serbia",
+#                   "Morocco","Tunisia","Egypt","Nigeria","Senegal","Australia","Japan","South Korea","Iran","Saudi Arabia","Mexico","Colombia","Panama",
+#                   "Costa Rica","Peru","Brazil","Argentina","Uruguay")
+wc_countries <- df_countries$name
 
 ######## Create full table all countries --------------------
 
@@ -73,6 +73,7 @@ for (c in wc_countries) {
  
 write.csv(wc_data, "wc_data.csv", row.names = FALSE)
 # each indicator needs an extra indication of whether more is better than less and filtering and stuff
+wc_data <- read.csv("wc_data.csv")
 wc_data <- filter(wc_data, !grepl("currency",tolower(Indicator)))
 
 # add ranks
